@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login | Git-Team-Project</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        align-items: center;
+        background: #f3f6fb;
+        color: #172033;
+        display: flex;
+        font-family: system-ui, sans-serif;
+        justify-content: center;
+        margin: 0;
+        min-height: 100vh;
+        padding: 1.5rem;
+      }
+
+      main {
+        background: #fff;
+        border-radius: 0.75rem;
+        box-shadow: 0 0.5rem 1.5rem #1720331a;
+        max-width: 24rem;
+        padding: 2rem;
+        width: 100%;
+      }
+
+      h1 {
+        margin-top: 0;
+      }
+
+      form {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      input,
+      button {
+        border: 1px solid #aab4c5;
+        border-radius: 0.375rem;
+        font: inherit;
+        min-height: 2.75rem;
+        padding: 0.625rem 0.75rem;
+      }
+
+      button {
+        background: #2457c5;
+        border-color: #2457c5;
+        color: #fff;
+        cursor: pointer;
+        font-weight: 600;
+        margin-top: 0.5rem;
+      }
+
+      button:hover {
+        background: #19449f;
+      }
+
+      #login-message {
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Sign in</h1>
+      <form id="login-form">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" autocomplete="username" required>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+
+        <button type="submit">Log in</button>
+        <p id="login-message" role="status" aria-live="polite"></p>
+      </form>
+    </main>
+    <script>
+      document.querySelector("#login-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        document.querySelector("#login-message").textContent =
+          "Demo form submitted. Authentication is not connected.";
+      });
+    </script>
+  </body>
+</html>
