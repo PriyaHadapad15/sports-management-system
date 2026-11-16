@@ -25,6 +25,8 @@ Commit incremental, tested changes with descriptive messages. Before integration
 
 Each developer owns the implementation and tests for their assigned feature, coordinates shared-file changes with the team, and requests review before merging.
 
+For this project, the responsibilities map to `login.html`, `signup.html`, `dashboard.html`, and `profile.html`, respectively. The four feature branches are kept in the local repository after merging so the work allocation and branch history remain visible. The GitHub usernames identify the intended owners; they do not imply that those users individually authored these local demonstration commits or have been granted repository access.
+
 ## Branch naming conventions
 
 - Stable integration branch: `main`
