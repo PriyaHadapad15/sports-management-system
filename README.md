@@ -1,7 +1,11 @@
-# Git-Team-Project
+# Sports Team Portal
 
 ## Introduction
 
-Git-Team-Project is a small web project used to demonstrate team Git workflows, feature branches, meaningful commits, and merge-conflict resolution.
+Sports Team Portal is a small, static sports club management demo. It includes a login page, registration form, sample activity dashboard, and editable member profile.
 
-Current status: The login feature is merged and the project is ready for continued development.
+Open `index.html` in a browser to explore the project. Profile details are stored in the current browser only; the forms do not connect to a server or provide real authentication.
+
+## Team contributions
+
+The four assigned feature branches are documented in [BRANCHING.md](BRANCHING.md). Each feature is developed independently and merged into `main`.
