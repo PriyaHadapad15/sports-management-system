@@ -2,10 +2,13 @@
 
 ## Introduction
 
-Sports Team Portal is a small, static sports club management demo. It includes a login page, registration form, sample activity dashboard, and editable member profile.
+Sports Team Portal is a small sports club management demo. Its four assigned feature areas are:
 
-Open `index.html` in a browser to explore the project. Profile details are stored in the current browser only; the forms do not connect to a server or provide real authentication.
+- Developer 1 — [Login](login.html)
+- Developer 2 — [Registration](signup.html)
+- Developer 3 — [Activity dashboard](dashboard.html)
+- Developer 4 — [Member profile](profile.html)
 
-## Team contributions
+Open `index.html` in a browser to explore the project. The shared layout is in `styles.css`. The dashboard uses sample activities; profile details are stored in the current browser only. Forms do not connect to a server or provide real authentication.
 
-The four assigned feature branches are documented in [BRANCHING.md](BRANCHING.md). Each feature is developed independently and merged into `main`.
+The four assigned feature branches and GitHub usernames are listed in [BRANCHING.md](BRANCHING.md). Each feature has its own branch and is merged into `main`. The local commits demonstrate divided work, but were made from one configured Git identity; they do not represent independent commits or access granted to each listed account.

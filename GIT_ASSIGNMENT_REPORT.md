@@ -32,7 +32,7 @@ The project is isolated in `Git-Team-Project`; the containing directory is under
 | Developer 3 | `Rakshitham15` | Dashboard functionality | `feature/dashboard` |
 | Developer 4 | `PriyaHadapad15` | Profile functionality | `feature/profile` |
 
-Only `feature/login` was created for the practical demonstration; the other three feature branches are documented as requested.
+During the initial Git fundamentals demonstration only `feature/login` was created. In the follow-up completion, all four assignment branches were used and merged into `main`. The local demonstration commits were made using the repository's configured Git identity; listing GitHub usernames documents intended ownership and does not claim that each account authored commits or has repository access.
 
 ## 5. Step-by-step implementation
 
@@ -146,15 +146,66 @@ b6c81c4 Initial commit: create project repository
 
 ## 9. Final result
 
-The project contains:
+The completed project contains:
 
 ```text
 Git-Team-Project/
 ├── README.md
 ├── BRANCHING.md
 ├── GIT_ASSIGNMENT_REPORT.md
-└── login.html
+├── index.html
+├── styles.css
+├── login.html
+├── signup.html
+├── dashboard.html
+└── profile.html
 ```
+
+Four-developer feature implementation completed after the original Git demonstration:
+
+| Developer | Branch | Feature commit | Delivered work |
+|---|---|---|---|
+| Developer 1 (`shrushtib08`) | `feature/login` | `7f6c74b` | Integrated login page with shared styling and portal navigation; clearly labels authentication as a demo. |
+| Developer 2 (`tauqeer971`) | `feature/signup` | `4171fa5` | Added a registration form with required fields, email validation, matching-password validation, and no credential storage. |
+| Developer 3 (`Rakshitham15`) | `feature/dashboard` | `ce05fb7` | Added sample sports activities, summary counts, and a working sport filter. |
+| Developer 4 (`PriyaHadapad15`) | `feature/profile` | `968c1c2` | Added editable profile preview with browser-local save and clear actions. |
+
+Each feature branch was merged into `main` with a non-fast-forward merge commit. The branch names remain available locally. These are contributions implemented in one local environment under its configured Git identity, not independently authenticated commits by the listed GitHub accounts.
+
+The final integration commands executed were:
+
+```text
+git switch main
+git merge --no-ff feature/login -m "merge: integrate login portal feature"
+git merge --no-ff feature/signup -m "merge: integrate team registration feature"
+git merge --no-ff feature/dashboard -m "merge: integrate team activity dashboard"
+git merge --no-ff feature/profile -m "merge: integrate member profile feature"
+```
+
+Final integration commit graph (actual output before this report's follow-up documentation update):
+
+```text
+*   39b99eb (HEAD -> main) merge: integrate member profile feature
+|\  
+| * 968c1c2 (feature/profile) feat: add editable member profile
+* |   7f5672e merge: integrate team activity dashboard
+|\ \  
+| * | ce05fb7 (feature/dashboard) feat: add filtered team activity dashboard
+| |/  
+* |   4a80c8c merge: integrate team registration feature
+|\ \  
+| * | 4171fa5 (feature/signup) feat: add validated team registration form
+| |/  
+*   bac7c69 merge: integrate login portal feature
+|\  
+| * 7f6c74b (feature/login) feat: integrate login with sports portal
+|/  
+* eabbb8e feat: add sports portal home and shared styles
+```
+
+The signup and login forms demonstrate client-side validation only. The dashboard uses static sample data. The profile stores non-password demo details in browser local storage. The project does not include backend services, real accounts, authentication, or a live team calendar.
+
+The completed pages were also exercised in the integrated browser: the dashboard initially showed five activities and filtered to two running activities; the signup form rejected mismatched passwords and accepted matching values; the profile saved values across a page reload and cleared them when requested; and the login form displayed its demo-only response. Test profile data was cleared after the check.
 
 Verification results:
 
