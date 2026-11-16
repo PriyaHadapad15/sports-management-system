@@ -19,7 +19,7 @@ To initialize a small project repository, document a four-developer branching wo
 - VS Code workspace at `C:\Users\priya\OneDrive\Desktop\devops`.
 - HTML, CSS, and browser-native form validation for the login demonstration.
 
-The project is isolated in `Git-Team-Project`; the containing directory is under a pre-existing parent repository, which was left unchanged. The repository-local Git name and email were set to the values already present in the global configuration. The global configuration was not changed. No remote was configured and nothing was pushed.
+The project is isolated in `Git-Team-Project`; the containing directory is under a pre-existing parent repository, which was left unchanged. The repository-local Git name and email were set to the values already present in the global configuration. The global configuration was not changed. The `origin` remote points to `https://github.com/PriyaHadapad15/sports-management-system.git`; `main` and all four feature branches were pushed, and `main` was pulled with fast-forward-only behavior and confirmed up to date. No GitHub pull request was created; the feature branches were merged locally into `main` before publishing.
 
 ## 4. Branching strategy
 
@@ -32,7 +32,7 @@ The project is isolated in `Git-Team-Project`; the containing directory is under
 | Developer 3 | `Rakshitham15` | Dashboard functionality | `feature/dashboard` |
 | Developer 4 | `PriyaHadapad15` | Profile functionality | `feature/profile` |
 
-During the initial Git fundamentals demonstration only `feature/login` was created. In the follow-up completion, all four assignment branches were used and merged into `main`. The local demonstration commits were made using the repository's configured Git identity; listing GitHub usernames documents intended ownership and does not claim that each account authored commits or has repository access.
+All four feature branches were created from the stable project history and retained after merging into `main`. The original login branch demonstrates the requested complete single-feature cycle, including a real merge conflict. The later signup, dashboard, and profile branches complete the four-person work split. The local demonstration commits were made using the repository's configured Git identity; listing GitHub usernames documents intended ownership and does not claim that each account authored commits or has repository access.
 
 ## 5. Step-by-step implementation
 
@@ -82,7 +82,7 @@ git -C $project merge-base --is-ancestor feature/login main
 
 `git -C` runs each command against the assignment repository rather than the parent repository. `git init` creates the repository; `git branch -M` renames the initial branch; `git switch -c` creates and checks out a feature branch; `git add` stages selected changes; and `git commit` records them. `git merge --no-commit --no-ff` attempts a non-fast-forward merge but pauses before creating its commit, allowing the conflict to be inspected and fixed explicitly. `git log --oneline --graph --all --decorate` visualizes commits and branch pointers.
 
-**Commands documented as team examples, not executed:** the branching guide shows `git pull` for updating from a remote and example `git status`, `git diff`, `git add`, and `git commit` commands for a future conflict workflow. No remote existed, so `git pull` was not run. The merge used actual `git status --short` and `git diff -- README.md` commands, and was completed manually; no push or automatic conflict resolution was used.
+**Commands documented as team examples, not executed in the original conflict-resolution cycle:** the branching guide shows `git pull` for updating from a remote and example `git status`, `git diff`, `git add`, and `git commit` commands. Later, after the GitHub remote was configured, `git pull --ff-only origin main` was executed and reported `Already up to date.` The completed `main` and four feature branches were pushed to `origin`. The README conflict itself was inspected with actual `git status --short` and `git diff -- README.md` commands and resolved manually; no automatic conflict resolution was used.
 
 ## 7. Merge conflict explanation and resolution
 
@@ -122,7 +122,7 @@ Then I staged `README.md` and created the merge commit. A final check found no `
 
 ## 8. Sample Git history
 
-The following is the **actual** output captured after the feature merge and before this report's follow-up commit:
+The following is the **actual** output captured immediately after the original login-feature conflict merge:
 
 ```text
 *   4a60751 (HEAD -> main) merge: integrate login feature and resolve README conflict
@@ -221,4 +221,28 @@ No separate automated test suite or authentication service was present. The fina
 
 ## 10. Conclusion
 
-The assignment demonstrates repository initialization, local identity configuration, a documented team branching strategy, focused feature commits, an actual Git-generated merge conflict, manual conflict resolution, and a readable commit graph. The repository was kept local, and the parent workspace repository and global Git settings were not changed.
+The assignment demonstrates repository initialization, local identity configuration, a documented four-developer branching strategy, focused feature commits, an actual Git-generated merge conflict, manual conflict resolution, and a readable commit graph. The completed repository and all feature branches were pushed to the configured GitHub remote. The parent workspace repository and global Git settings were not changed.
+
+Final repository state was verified on `main` with a clean worktree tracking `origin/main`. The final graph was verified with `git log --oneline --graph --all --decorate`; the current one-line history (actual output after the team features and documentation updates) is:
+
+```text
+88c94a7 (HEAD -> main, origin/main) docs: map team members to feature pages
+112ec43 docs: document four feature contributions and tests
+39b99eb merge: integrate member profile feature
+968c1c2 (origin/feature/profile, feature/profile) feat: add editable member profile
+7f5672e merge: integrate team activity dashboard
+4a80c8c merge: integrate team registration feature
+bac7c69 merge: integrate login portal feature
+ce05fb7 (origin/feature/dashboard, feature/dashboard) feat: add filtered team activity dashboard
+4171fa5 (origin/feature/signup, feature/signup) feat: add validated team registration form
+7f6c74b (origin/feature/login, feature/login) feat: integrate login with sports portal
+eabbb8e feat: add sports portal home and shared styles
+9b85ad6 docs: add team GitHub usernames
+dd20c87 docs: add Git assignment report
+4a60751 merge: integrate login feature and resolve README conflict
+d756ee1 docs: update project readiness status
+2599585 style: improve login page layout
+e25b048 feat: add login page
+f4914f4 docs: define team branching strategy
+b6c81c4 Initial commit: create project repository
+```
