@@ -25,12 +25,12 @@ The project is isolated in `Git-Team-Project`; the containing directory is under
 
 `main` is the stable integration branch. Each developer starts a separate feature branch from `main`, makes focused commits, tests the changes, and requests review before merging. See [BRANCHING.md](./BRANCHING.md) for the full team assignments and conventions:
 
-| Developer | Responsibility | Branch |
-|---|---|---|
-| Developer 1 | Login functionality | `feature/login` |
-| Developer 2 | Registration functionality | `feature/signup` |
-| Developer 3 | Dashboard functionality | `feature/dashboard` |
-| Developer 4 | Profile functionality | `feature/profile` |
+| Developer | GitHub username | Responsibility | Branch |
+|---|---|---|---|
+| Developer 1 | `shrushtib08` | Login functionality | `feature/login` |
+| Developer 2 | `tauqeer971` | Registration functionality | `feature/signup` |
+| Developer 3 | `Rakshitham15` | Dashboard functionality | `feature/dashboard` |
+| Developer 4 | `PriyaHadapad15` | Profile functionality | `feature/profile` |
 
 Only `feature/login` was created for the practical demonstration; the other three feature branches are documented as requested.
 

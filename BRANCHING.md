@@ -16,12 +16,12 @@ Commit incremental, tested changes with descriptive messages. Before integration
 
 ## Developers and responsibilities
 
-| Developer | Responsibility | Branch |
-|---|---|---|
-| Developer 1 | Login functionality | `feature/login` |
-| Developer 2 | Registration functionality | `feature/signup` |
-| Developer 3 | Dashboard functionality | `feature/dashboard` |
-| Developer 4 | Profile functionality | `feature/profile` |
+| Developer | GitHub username | Responsibility | Branch |
+|---|---|---|---|
+| Developer 1 | `shrushtib08` | Login functionality | `feature/login` |
+| Developer 2 | `tauqeer971` | Registration functionality | `feature/signup` |
+| Developer 3 | `Rakshitham15` | Dashboard functionality | `feature/dashboard` |
+| Developer 4 | `PriyaHadapad15` | Profile functionality | `feature/profile` |
 
 Each developer owns the implementation and tests for their assigned feature, coordinates shared-file changes with the team, and requests review before merging.
 
