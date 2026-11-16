@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="View sample sports team sessions and fixtures.">
+    <title>Dashboard | Sports Team Portal</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">Sports Team Portal</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="login.html">Login</a>
+        <a href="signup.html">Register</a>
+        <a href="dashboard.html" aria-current="page">Dashboard</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+    </header>
+    <main class="page">
+      <section class="page-heading">
+        <h1>Team dashboard</h1>
+        <p class="muted">A sample schedule of training sessions and upcoming fixtures.</p>
+      </section>
+      <section class="card-grid" aria-label="Team overview">
+        <article class="card">
+          <h2 class="muted">Upcoming activities</h2>
+          <p class="stat-value" id="activity-count">0</p>
+        </article>
+        <article class="card">
+          <h2 class="muted">Sports represented</h2>
+          <p class="stat-value" id="sport-count">0</p>
+        </article>
+        <article class="card">
+          <h2>Get started</h2>
+          <p>Register a demo member profile to join the portal.</p>
+          <a href="signup.html">Register for the demo</a>
+        </article>
+      </section>
+      <section aria-labelledby="schedule-title">
+        <div class="toolbar">
+          <div>
+            <h2 id="schedule-title">Schedule</h2>
+            <p class="muted" id="schedule-result" role="status" aria-live="polite"></p>
+          </div>
+          <label for="sport-filter">Filter by sport
+            <select id="sport-filter">
+              <option value="all">All sports</option>
+              <option value="Basketball">Basketball</option>
+              <option value="Football">Football</option>
+              <option value="Running">Running</option>
+              <option value="Swimming">Swimming</option>
+            </select>
+          </label>
+        </div>
+        <ul class="item-list" id="schedule-list" aria-live="polite"></ul>
+      </section>
+      <p class="notice">The schedule is example data included in this demo, not a live team calendar.</p>
+    </main>
+    <footer class="site-footer">Sports Team Portal · Project demonstration</footer>
+    <script>
+      const activities = [
+        { title: "Morning track intervals", sport: "Running", date: "2026-11-18", time: "07:00", location: "Riverside Track", type: "Training" },
+        { title: "Junior swim practice", sport: "Swimming", date: "2026-11-19", time: "16:30", location: "Community Pool", type: "Training" },
+        { title: "Friendly match vs. Eastside", sport: "Football", date: "2026-11-21", time: "10:00", location: "Central Sports Ground", type: "Fixture" },
+        { title: "Skills and shooting", sport: "Basketball", date: "2026-11-22", time: "14:00", location: "North Hall", type: "Training" },
+        { title: "Weekend distance run", sport: "Running", date: "2026-11-25", time: "08:00", location: "Riverside Track", type: "Training" }
+      ];
+      const scheduleList = document.querySelector("#schedule-list");
+      const sportFilter = document.querySelector("#sport-filter");
+      const dateFormatter = new Intl.DateTimeFormat(undefined, {
+        weekday: "short",
+        day: "numeric",
+        month: "short"
+      });
+
+      document.querySelector("#activity-count").textContent = String(activities.length);
+      document.querySelector("#sport-count").textContent =
+        String(new Set(activities.map((activity) => activity.sport)).size);
+
+      function renderSchedule() {
+        const selectedSport = sportFilter.value;
+        const visibleActivities = activities.filter((activity) =>
+          selectedSport === "all" || activity.sport === selectedSport
+        );
+        scheduleList.replaceChildren();
+
+        for (const activity of visibleActivities) {
+          const item = document.createElement("li");
+          const card = document.createElement("article");
+          const title = document.createElement("h3");
+          const details = document.createElement("p");
+          const metadata = document.createElement("p");
+
+          card.className = "card";
+          title.textContent = activity.title;
+          details.textContent = `${activity.type} · ${activity.sport}`;
+          metadata.className = "item-meta muted";
+          metadata.textContent =
+            `${dateFormatter.format(new Date(`${activity.date}T12:00:00`))} at ${activity.time} · ${activity.location}`;
+          card.append(title, details, metadata);
+          item.append(card);
+          scheduleList.append(item);
+        }
+
+        document.querySelector("#schedule-result").textContent =
+          `${visibleActivities.length} ${visibleActivities.length === 1 ? "activity" : "activities"} shown`;
+      }
+
+      sportFilter.addEventListener("change", renderSchedule);
+      renderSchedule();
+    </script>
+  </body>
+</html>
