@@ -3,88 +3,46 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login | Git-Team-Project</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        align-items: center;
-        background: #f3f6fb;
-        color: #172033;
-        display: flex;
-        font-family: system-ui, sans-serif;
-        justify-content: center;
-        margin: 0;
-        min-height: 100vh;
-        padding: 1.5rem;
-      }
-
-      main {
-        background: #fff;
-        border-radius: 0.75rem;
-        box-shadow: 0 0.5rem 1.5rem #1720331a;
-        max-width: 24rem;
-        padding: 2rem;
-        width: 100%;
-      }
-
-      h1 {
-        margin-top: 0;
-      }
-
-      form {
-        display: grid;
-        gap: 0.75rem;
-      }
-
-      input,
-      button {
-        border: 1px solid #aab4c5;
-        border-radius: 0.375rem;
-        font: inherit;
-        min-height: 2.75rem;
-        padding: 0.625rem 0.75rem;
-      }
-
-      button {
-        background: #2457c5;
-        border-color: #2457c5;
-        color: #fff;
-        cursor: pointer;
-        font-weight: 600;
-        margin-top: 0.5rem;
-      }
-
-      button:hover {
-        background: #19449f;
-      }
-
-      #login-message {
-        margin-bottom: 0;
-      }
-    </style>
+    <meta name="description" content="Sign in to the Sports Team Portal demo.">
+    <title>Login | Sports Team Portal</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <main>
-      <h1>Sign in</h1>
-      <form id="login-form">
-        <label for="username">Username</label>
-        <input id="username" name="username" type="text" autocomplete="username" required>
-
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" autocomplete="current-password" required>
-
-        <button type="submit">Log in</button>
-        <p id="login-message" role="status" aria-live="polite"></p>
+    <header class="site-header">
+      <a class="brand" href="index.html">Sports Team Portal</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="login.html" aria-current="page">Login</a>
+        <a href="signup.html">Register</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+    </header>
+    <main class="page page-narrow">
+      <section class="page-heading">
+        <h1>Welcome back</h1>
+        <p class="muted">Sign in form demonstration for the sports team portal.</p>
+      </section>
+      <form class="form-card" id="login-form">
+        <label for="username">Username
+          <input id="username" name="username" type="text" autocomplete="username" required>
+        </label>
+        <label for="password">Password
+          <input id="password" name="password" type="password" autocomplete="current-password" required>
+        </label>
+        <div class="actions">
+          <button type="submit">Log in</button>
+          <a href="signup.html">Create an account</a>
+        </div>
+        <p class="status muted" id="login-message" role="status" aria-live="polite"></p>
       </form>
+      <p class="notice">Demo only: no password is checked or sent to a server. Do not enter a real password.</p>
     </main>
+    <footer class="site-footer">Sports Team Portal · Project demonstration</footer>
     <script>
       document.querySelector("#login-form").addEventListener("submit", (event) => {
         event.preventDefault();
         document.querySelector("#login-message").textContent =
-          "Demo form submitted. Authentication is not connected.";
+          "Form submitted for demonstration. Authentication is not connected.";
       });
     </script>
   </body>
