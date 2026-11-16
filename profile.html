@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Edit your local Sports Team Portal demo profile.">
+    <title>Member Profile | Sports Team Portal</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">Sports Team Portal</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="login.html">Login</a>
+        <a href="signup.html">Register</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="profile.html" aria-current="page">Profile</a>
+      </nav>
+    </header>
+    <main class="page">
+      <section class="page-heading">
+        <h1>Member profile</h1>
+        <p class="muted">Edit and save your demo details in this browser.</p>
+      </section>
+      <div class="card-grid">
+        <section class="form-card" aria-labelledby="edit-profile-title">
+          <h2 id="edit-profile-title">Your details</h2>
+          <form id="profile-form" class="form-grid">
+            <label for="profile-name">Full name
+              <input id="profile-name" name="name" autocomplete="name" maxlength="80" required>
+            </label>
+            <label for="profile-email">Email address
+              <input id="profile-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+            </label>
+            <label for="profile-sport">Preferred sport
+              <select id="profile-sport" name="sport" required>
+                <option value="">Choose a sport</option>
+                <option>Football</option>
+                <option>Basketball</option>
+                <option>Swimming</option>
+                <option>Running</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label for="profile-bio">About you
+              <textarea id="profile-bio" name="bio" maxlength="300" placeholder="Share your position, experience, or goals."></textarea>
+            </label>
+            <div class="actions">
+              <button type="submit">Save profile</button>
+              <button class="button-secondary" id="clear-profile" type="button">Clear saved profile</button>
+            </div>
+          </form>
+          <p class="status muted" id="profile-message" role="status" aria-live="polite"></p>
+        </section>
+        <section class="card" aria-labelledby="preview-title">
+          <h2 id="preview-title">Profile preview</h2>
+          <p id="preview-name">No profile saved yet.</p>
+          <p class="muted" id="preview-email"></p>
+          <p class="muted" id="preview-sport"></p>
+          <p id="preview-bio"></p>
+        </section>
+      </div>
+      <p class="notice">Demo privacy note: profile details are saved only in this browser's local storage. Do not enter sensitive information. This demo has no server or account system.</p>
+    </main>
+    <footer class="site-footer">Sports Team Portal · Project demonstration</footer>
+    <script>
+      const profileForm = document.querySelector("#profile-form");
+      const profileMessage = document.querySelector("#profile-message");
+      const profileFields = {
+        name: document.querySelector("#profile-name"),
+        email: document.querySelector("#profile-email"),
+        sport: document.querySelector("#profile-sport"),
+        bio: document.querySelector("#profile-bio")
+      };
+
+      function showPreview(profile) {
+        document.querySelector("#preview-name").textContent = profile
+          ? profile.name
+          : "No profile saved yet.";
+        document.querySelector("#preview-email").textContent = profile ? profile.email : "";
+        document.querySelector("#preview-sport").textContent = profile
+          ? `Preferred sport: ${profile.sport}`
+          : "";
+        document.querySelector("#preview-bio").textContent = profile ? profile.bio : "";
+      }
+
+      function loadProfile() {
+        let savedProfile;
+        try {
+          const stored = localStorage.getItem("sports-team-profile");
+          savedProfile = stored ? JSON.parse(stored) : null;
+        } catch {
+          profileMessage.textContent =
+            "Could not read saved profile data in this browser.";
+          showPreview(null);
+          return;
+        }
+
+        if (savedProfile && typeof savedProfile === "object") {
+          for (const [field, input] of Object.entries(profileFields)) {
+            input.value = typeof savedProfile[field] === "string" ? savedProfile[field] : "";
+          }
+          showPreview({
+            name: profileFields.name.value,
+            email: profileFields.email.value,
+            sport: profileFields.sport.value,
+            bio: profileFields.bio.value
+          });
+        } else {
+          profileForm.reset();
+          showPreview(null);
+        }
+      }
+
+      profileForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!profileForm.reportValidity()) {
+          return;
+        }
+
+        const profile = Object.fromEntries(new FormData(profileForm));
+        try {
+          localStorage.setItem("sports-team-profile", JSON.stringify(profile));
+        } catch {
+          profileMessage.textContent =
+            "Could not save profile data. Check browser storage availability and try again.";
+          return;
+        }
+
+        showPreview(profile);
+        profileMessage.textContent = "Profile saved in this browser.";
+      });
+
+      document.querySelector("#clear-profile").addEventListener("click", () => {
+        try {
+          localStorage.removeItem("sports-team-profile");
+        } catch {
+          profileMessage.textContent =
+            "Could not clear saved profile data in this browser.";
+          return;
+        }
+
+        profileForm.reset();
+        showPreview(null);
+        profileMessage.textContent = "Saved profile cleared.";
+      });
+
+      loadProfile();
+    </script>
+  </body>
+</html>
