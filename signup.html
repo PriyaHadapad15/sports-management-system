@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Register a demo member profile for the Sports Team Portal.">
+    <title>Register | Sports Team Portal</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">Sports Team Portal</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="login.html">Login</a>
+        <a href="signup.html" aria-current="page">Register</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+    </header>
+    <main class="page page-narrow">
+      <section class="page-heading">
+        <h1>Join the team</h1>
+        <p class="muted">Create a demo member profile. Your password is never saved or sent anywhere.</p>
+      </section>
+      <form class="form-card" id="signup-form">
+        <label for="full-name">Full name
+          <input id="full-name" name="fullName" autocomplete="name" required>
+        </label>
+        <label for="email">Email address
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </label>
+        <label for="sport">Preferred sport
+          <select id="sport" name="sport" required>
+            <option value="">Choose a sport</option>
+            <option>Football</option>
+            <option>Basketball</option>
+            <option>Swimming</option>
+            <option>Running</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label for="password">Create a demo password
+          <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+        </label>
+        <label for="confirm-password">Confirm demo password
+          <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required>
+        </label>
+        <button type="submit">Create demo profile</button>
+        <p class="status muted" id="signup-message" role="status" aria-live="polite"></p>
+        <p class="muted">This demo validates the form only. It does not create an account or store credentials.</p>
+      </form>
+    </main>
+    <footer class="site-footer">Sports Team Portal · Project demonstration</footer>
+    <script>
+      const signupForm = document.querySelector("#signup-form");
+      const password = document.querySelector("#password");
+      const confirmPassword = document.querySelector("#confirm-password");
+
+      function validatePasswordMatch() {
+        confirmPassword.setCustomValidity(
+          confirmPassword.value === password.value ? "" : "Passwords do not match."
+        );
+      }
+
+      password.addEventListener("input", validatePasswordMatch);
+      confirmPassword.addEventListener("input", validatePasswordMatch);
+
+      signupForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        validatePasswordMatch();
+        if (!signupForm.reportValidity()) {
+          return;
+        }
+        document.querySelector("#signup-message").textContent =
+          "Form validated. Account creation is not connected to a server.";
+        signupForm.reset();
+      });
+    </script>
+  </body>
+</html>
